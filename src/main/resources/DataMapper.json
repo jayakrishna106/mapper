@@ -1,0 +1,74 @@
+{
+  "datasources": [
+    {
+      "type": "json",
+      "path": "input1.json",
+      "mappings": [
+        {
+          "targetField": "personName",
+          "sourceField": "name",
+          "sourcePath": "$.person.name",
+          "dataType": "string",
+          "actions": [
+            { "type": "uppercase" },
+            { "type": "join", "delimiter": " " },
+            { "type": "substring", "start": 0, "end": 5 }
+          ]
+        },
+        {
+          "targetField": "personAge",
+          "sourceField": "age",
+          "sourcePath": "$.person.age",
+          "dataType": "integer"
+        }
+      ]
+    },
+    {
+      "type": "xml",
+      "path": "input2.xml",
+      "mappings": [
+        {
+          "targetField": "personCity",
+          "sourceField": "city",
+          "sourcePath": "/root/personCity",
+          "dataType": "string",
+          "actions": [
+            { "type": "lowercase" },
+            { "type": "replace", "search": " ", "replacement": "-" },
+            { "type": "replaceAll", "search": "a", "replacement": "A" }
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": {
+    "uppercase": {
+      "type": "toUpperCase"
+    },
+    "lowercase": {
+      "type": "toLowerCase"
+    },
+    "join": {
+      "type": "join",
+      "delimiter": " "
+    },
+    "replace": {
+      "type": "replace",
+      "search": "",
+      "replacement": ""
+    },
+    "replaceAll": {
+      "type": "replaceAll",
+      "search": "",
+      "replacement": ""
+    },
+    "normalize": {
+      "type": "normalize"
+    },
+    "substring": {
+      "type": "substring",
+      "start": 0,
+      "end": 0
+    }
+  }
+}
